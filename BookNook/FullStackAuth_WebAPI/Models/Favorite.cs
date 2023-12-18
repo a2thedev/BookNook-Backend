@@ -2,7 +2,7 @@
 {
     public class Favorite
     {
-        [key]
+        
 
         public int Id { get; set; }
         public string BookId { get; set; }

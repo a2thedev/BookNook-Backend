@@ -2,7 +2,7 @@
 {
     public class Review
     {
-        [Key]
+        
 
         public int Id { get; set; }
 
