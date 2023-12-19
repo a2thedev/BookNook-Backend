@@ -37,7 +37,7 @@ namespace FullStackAuth_WebAPI.Controllers
         [HttpPost, Authorize]
         public IActionResult Post([FromBody] Review review)
         {
-            string userId = User.FindFirstValue("id");
+            var userId = User.FindFirstValue("id");
             review.UserId = userId;
 
             _context.Reviews.Add(review);
