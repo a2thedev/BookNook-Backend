@@ -20,26 +20,25 @@ namespace FullStackAuth_WebAPI.Controllers
         }
 
         // GET: api/<ReviewsController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
-        // GET api/<ReviewsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //// GET api/<ReviewsController>/5
+        //[HttpGet("{id}")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
         // POST api/<ReviewsController>
         [HttpPost, Authorize]
         public IActionResult Post([FromBody] Review review)
         {
             string userId = User.FindFirstValue("id");
-
-            _context.Users.Find(userId);
+            review.UserId = userId;
 
             _context.Reviews.Add(review);
             _context.SaveChanges();
@@ -47,15 +46,15 @@ namespace FullStackAuth_WebAPI.Controllers
         }
 
         // PUT api/<ReviewsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<ReviewsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<ReviewsController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
