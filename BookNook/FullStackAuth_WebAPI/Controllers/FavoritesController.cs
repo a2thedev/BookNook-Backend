@@ -1,4 +1,5 @@
 ﻿using FullStackAuth_WebAPI.Data;
+using FullStackAuth_WebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -26,29 +27,34 @@ namespace FullStackAuth_WebAPI.Controllers
             return StatusCode(200, favorites);
         }
 
-        // GET api/<FavoritesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //// GET api/<FavoritesController>/5
+        //[HttpGet("{id}")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
         // POST api/<FavoritesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost, Authorize]
+        public IActionResult Post([FromBody] Favorite favorite)
         {
-        }
+            var userId = User.FindFirstValue("id");
+            favorite.UserId = userId;
+            _context.Favorites.Add(favorite);
+            _context.SaveChanges();
+            return StatusCode(201);
 
-        // PUT api/<FavoritesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
         }
+        //// PUT api/<FavoritesController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<FavoritesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<FavoritesController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
